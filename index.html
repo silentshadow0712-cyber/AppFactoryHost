@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppFactoryHost - Build Your Website in 10 Days!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a23 0%, #1e3a8a 50%, #1e40af 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px #00f5ff); }
+            to { filter: drop-shadow(0 0 30px #ff00ff); }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #e0e7ff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .highlight {
+            font-size: 1.3rem;
+            color: #00ff88;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff00ff, #00f5ff);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.6);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shine 0.6s ease-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .achievement {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .achievement-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00ff88, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .achievement-label {
+            color: #e0e7ff;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .founder {
+            font-size: 1.5rem;
+            color: #00f5ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .phone {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff00ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            display: inline-block;
+            padding: 20px 40px;
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .phone:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+        }
+
+        .guarantee {
+            text-align: center;
+            font-size: 2rem;
+            color: #00ff88;
+            font-weight: 700;
+            margin: 40px 0;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #a5b4fc;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .cta-button { padding: 15px 30px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">AppFactoryHost</h1>
+            <p class="tagline">We build websites & apps that convert visitors into customers 🚀</p>
+        </header>
+
+        <section class="hero">
+            <h1>✅ NO CHARGES - 100% FREE</h1>
+            <p class="highlight">We accept your charge - Build your dream website TODAY!</p>
+            <p><strong>"We will make your app within 10 days after call"</strong></p>
+            <a href="tel:+918114739314" class="cta-button">📞 CALL NOW: 8114739314</a>
+            <a href="#contact" class="cta-button">GET STARTED FREE</a>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast Delivery</h3>
+                <p>Your complete website ready in just 10 days or less!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>100% FREE Service</h3>
+                <p>No hidden charges. We accept your charge - completely free!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>GenZ UI Design</h3>
+                <p>Modern, trendy designs that your audience will love</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile-First</h3>
+                <p>Perfectly responsive on all devices</p>
+            </div>
+        </section>
+
+        <section class="achievements">
+            <div class="achievement">
+                <span class="achievement-number">500+</span>
+                <div class="achievement-label">Happy Clients</div>
+            </div>
+            <div class="achievement">
+                <span class="achievement-number">1000+</span>
+                <div class="achievement-label">Websites Delivered</div>
+            </div>
+            <div class="achievement">
+                <span class="achievement-number">10</span>
+                <div class="achievement-label">Days Max Delivery</div>
+            </div>
+            <div class="achievement">
+                <span class="achievement-number">0₹</span>
+                <div class="achievement-label">Charges</div>
+            </div>
+        </section>
+
+        <section class="guarantee">
+            💎 GUARANTEE: Your website delivered in 10 days or it's FREE! 💎
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h2>Ready to get started?</h2>
+            <p class="founder">👨‍💼 Founder: Ayush Kumar Laha</p>
+            <a href="tel:+918114739314" class="phone">📲 CALL NOW: 8114739314</a>
+            <p style="color: #a5b4fc; margin-top: 20px;">
+                We will make your app within 10 days after call. No charges!
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AppFactoryHost. Built with ❤️ by Ayush Kumar Laha | Free Forever 🚀</p>
+    </footer>
+
+    <script>
+        // Add scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideIn 1s ease-out forwards';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card, .achievement').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>i
